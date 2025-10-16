@@ -18,6 +18,7 @@ jobs:
       - uses: withastro/action@v3
         with:
            path: packages/doc-site
+           package-manager: pnpm
 
   deploy:
     needs: build
