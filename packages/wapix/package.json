@@ -1,0 +1,30 @@
+{
+  "name": "wapix",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "bin": {
+    "wapix": "./bin/cli.js"
+  },
+  "exports": {
+    ".": {
+      "import": "./lib/index.js",
+      "types": "./lib/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "chokidar": "^4.0.3",
+    "picomatch": "^4.0.3",
+    "tsx": "^4.20.6"
+  },
+  "devDependencies": {
+    "@types/node": "^24.7.2",
+    "@types/picomatch": "^3.0.2",
+    "typescript": "^5.0.0"
+  }
+}

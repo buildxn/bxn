@@ -1,0 +1,19 @@
+{
+  "name": "wapix-example",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "wapix dev",
+    "start": "wapix start",
+    "build": "tsc"
+  },
+  "exports": null,
+  "dependencies": {
+    "wapix": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^24.7.2",
+    "typescript": "^5.9.3"
+  }
+}
