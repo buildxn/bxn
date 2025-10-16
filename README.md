@@ -27,6 +27,7 @@
 - **📦 Lightweight** - Minimal dependencies, built on Node.js HTTP
 - **🛣️ Dynamic Routes** - Support for path parameters (`:id`, `:slug`, etc.)
 - **📤 Streaming** - First-class support for streaming responses
+- **🔐 HTTPS Support** - Built-in SSL/TLS support for secure connections
 - **🔌 Middleware-Free** - Simple, predictable request handlers
 
 ## 🚀 Quick Start
@@ -217,8 +218,52 @@ wapix start
 # Options:
 #   --port, -p <port>    Port to listen on (default: 3000)
 #   --routes <path>      Routes directory (default: ./src/routes for dev, ./lib/routes for start)
+#   --key <path>         Path to SSL private key file (for HTTPS)
+#   --cert <path>        Path to SSL certificate file (for HTTPS)
 #   --include, -i        Include patterns (can be specified multiple times, used with picomatch)
 #   --exclude, -e        Exclude patterns (can be specified multiple times, used with picomatch)
+```
+
+### HTTPS Support
+
+wapix supports HTTPS by providing SSL certificate files:
+
+```bash
+# Development with HTTPS
+wapix dev --key ./ssl/key.pem --cert ./ssl/cert.pem
+
+# Production with HTTPS
+wapix start --port 443 --key ./ssl/key.pem --cert ./ssl/cert.pem
+```
+
+**Generating self-signed certificates for development:**
+
+```bash
+# Generate a self-signed certificate
+openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes
+```
+
+**Using HTTPS programmatically:**
+
+```typescript
+import { createServer } from 'wapix';
+import { readFileSync } from 'fs';
+
+const server = createServer(
+  {
+    '/': { get: async () => json({ message: 'Hello HTTPS!' }) }
+  },
+  {
+    https: {
+      key: readFileSync('./ssl/key.pem'),
+      cert: readFileSync('./ssl/cert.pem')
+    }
+  }
+);
+
+server.listen(443, () => {
+  console.log('HTTPS server running on port 443');
+});
 ```
 
 #### Development Mode Watch Patterns

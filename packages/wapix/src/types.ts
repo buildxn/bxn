@@ -15,7 +15,7 @@ export interface EnhancedRequest<
 }
 
 export type RequestHandler<
-  Params = {},
+  Params = Record<string, string>,
   Result extends HttpResult = HttpResult,
   RequestBody = any,
   Query = {}

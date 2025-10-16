@@ -26,6 +26,8 @@ wapix dev [options]
 |--------|-------|------|---------|-------------|
 | `--port` | `-p` | number | `3000` | Port to listen on |
 | `--routes` | - | string | `./src/routes` | Routes directory path |
+| `--key` | - | string | - | Path to SSL private key file (for HTTPS) |
+| `--cert` | - | string | - | Path to SSL certificate file (for HTTPS) |
 | `--include` | `-i` | string[] | `[]` | Include patterns (picomatch) |
 | `--exclude` | `-e` | string[] | `[]` | Exclude patterns (picomatch) |
 
@@ -50,6 +52,12 @@ wapix dev --include "**/.config/**"
 
 # Multiple options
 wapix dev -p 8080 --routes ./api --exclude "**/*.test.ts"
+
+# HTTPS in development
+wapix dev --key ./ssl/key.pem --cert ./ssl/cert.pem
+
+# HTTPS with custom port
+wapix dev --port 3443 --key ./ssl/key.pem --cert ./ssl/cert.pem
 ```
 
 ### start
@@ -71,6 +79,8 @@ wapix start [options]
 |--------|-------|------|---------|-------------|
 | `--port` | `-p` | number | `3000` | Port to listen on |
 | `--routes` | - | string | `./lib/routes` | Routes directory path |
+| `--key` | - | string | - | Path to SSL private key file (for HTTPS) |
+| `--cert` | - | string | - | Path to SSL certificate file (for HTTPS) |
 
 **Examples:**
 
@@ -84,6 +94,108 @@ wapix start -p 8080
 
 # Custom routes directory
 wapix start --routes ./dist/routes
+
+# HTTPS in production
+wapix start --port 443 --key ./ssl/key.pem --cert ./ssl/cert.pem
+
+# HTTPS with custom routes
+wapix start --port 443 --routes ./dist/routes --key ./ssl/key.pem --cert ./ssl/cert.pem
+```
+
+## HTTPS Support
+
+Both `wapix dev` and `wapix start` support HTTPS by providing SSL certificate files.
+
+### Requirements
+
+To enable HTTPS, you must provide both:
+- `--key` - Path to your SSL private key file (PEM format)
+- `--cert` - Path to your SSL certificate file (PEM format)
+
+Both options must be provided together. If only one is provided, the server will start in HTTP mode.
+
+### Development Setup
+
+For local development, you can generate a self-signed certificate:
+
+```bash
+# Generate self-signed certificate (valid for 365 days)
+openssl req -x509 -newkey rsa:4096 \
+  -keyout key.pem -out cert.pem \
+  -days 365 -nodes \
+  -subj "/C=US/ST=State/L=City/O=Organization/CN=localhost"
+
+# Start dev server with HTTPS
+wapix dev --key ./key.pem --cert ./cert.pem
+```
+
+Your server will be available at `https://localhost:3000`
+
+**Note:** Browsers will show a security warning for self-signed certificates. This is expected for development.
+
+### Production Setup
+
+For production, use certificates from a trusted Certificate Authority (CA):
+
+```bash
+# Using Let's Encrypt certificates (example paths)
+wapix start \
+  --port 443 \
+  --key /etc/letsencrypt/live/yourdomain.com/privkey.pem \
+  --cert /etc/letsencrypt/live/yourdomain.com/fullchain.pem
+```
+
+### Examples
+
+```bash
+# Development with HTTPS
+wapix dev --key ./ssl/key.pem --cert ./ssl/cert.pem
+
+# Development with HTTPS on custom port
+wapix dev --port 3443 --key ./ssl/key.pem --cert ./ssl/cert.pem
+
+# Production with HTTPS
+wapix start --port 443 --key ./ssl/key.pem --cert ./ssl/cert.pem
+
+# Production with HTTPS and custom routes
+wapix start \
+  --port 443 \
+  --routes ./dist/routes \
+  --key ./ssl/key.pem \
+  --cert ./ssl/cert.pem
+```
+
+### Path Resolution
+
+Certificate file paths are resolved relative to the current working directory:
+
+```bash
+# Relative paths
+wapix start --key ./ssl/key.pem --cert ./ssl/cert.pem
+
+# Absolute paths
+wapix start --key /etc/ssl/key.pem --cert /etc/ssl/cert.pem
+```
+
+### Programmatic HTTPS
+
+You can also configure HTTPS programmatically using the `createServer` API:
+
+```typescript
+import { createServer } from 'wapix';
+import { readFileSync } from 'fs';
+
+const server = createServer(
+  routes,
+  {
+    https: {
+      key: readFileSync('./ssl/key.pem'),
+      cert: readFileSync('./ssl/cert.pem')
+    }
+  }
+);
+
+server.listen(443);
 ```
 
 ## Environment Variables

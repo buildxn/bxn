@@ -1,16 +1,22 @@
 import { Server } from 'node:http';
+import { Server as HttpsServer } from 'node:https';
+import type { ServerOptions as HttpsServerOptions } from 'node:https';
+import type { IncomingMessage, ServerResponse } from 'node:http';
 import type { RequestHandler } from './types.js';
 import { enhanceRequest } from './enhance-request.js';
 import { findMatchingRoute } from './find-matching-route.js';
 import type { HttpMethod } from './http-methods.js';
 
-export type RouteHandler = RequestHandler<any, any>;
-
 // Routes are path-first: { '/path': { get: handler, post: handler } }
-export type Routes = Record<string, Partial<Record<HttpMethod, RouteHandler>>>;
+export type Routes = Record<string, Partial<Record<HttpMethod, RequestHandler>>>;
 
-export function createServer(routes: Routes = {}) {
-    const http = new Server(async (req, res) => {
+export interface ServerOptions {
+    /** HTTPS server options (key, cert, etc.). If provided, creates an HTTPS server */
+    https?: HttpsServerOptions;
+}
+
+export function createServer(routes: Routes = {}, options?: ServerOptions) {
+    const requestHandler = async (req: IncomingMessage, res: ServerResponse) => {
         const url = new URL(req.url ?? '/', `http://${req.headers.host}`);
         const pathname = url.pathname;
         const method = req.method?.toLowerCase() || 'get';
@@ -51,7 +57,12 @@ export function createServer(routes: Routes = {}) {
                 res.end(JSON.stringify({ error: 'Internal Server Error' }));
             }
         }
-    });
+    };
 
-    return http;
+    // Create either HTTP or HTTPS server based on options
+    if (options?.https) {
+        return new HttpsServer(options.https, requestHandler);
+    }
+
+    return new Server(requestHandler);
 }

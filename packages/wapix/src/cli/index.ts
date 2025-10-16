@@ -44,6 +44,8 @@ export async function run(): Promise<void> {
     console.log('\nOptions:');
     console.log('  --port, -p <port>    Port to listen on (default: 3000)');
     console.log('  --routes <path>      Routes directory');
+    console.log('  --key <path>         Path to SSL private key file (for HTTPS)');
+    console.log('  --cert <path>        Path to SSL certificate file (for HTTPS)');
     process.exit(1);
   }
 }
