@@ -6,6 +6,7 @@ import starlight from '@astrojs/starlight';
 export default defineConfig({
 	site: 'https://buildxn.github.io',
 	base: '/wapix',
+	trailingSlash: 'always',
 	integrations: [
 		starlight({
 			title: 'wapix',
