@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import type { Routes } from '../create-server.js';
-import { isHttpMethod, type HttpMethod } from '../http-methods.js';
+import type { Routes } from '../create-server.ts';
+import { isHttpMethod, type HttpMethod } from '../http-methods.ts';
 
 export async function buildRouteTree(dir: string, basePath = ''): Promise<Routes> {
   const entries = await fs.readdir(dir, { withFileTypes: true });

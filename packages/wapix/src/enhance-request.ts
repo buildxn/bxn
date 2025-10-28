@@ -1,7 +1,7 @@
 import { URL } from 'node:url';
 import type { IncomingMessage } from 'node:http';
-import { parseBody } from './parse-body.js';
-import type { EnhancedRequest } from './types.js';
+import { parseBody } from './parse-body.ts';
+import type { EnhancedRequest } from './types.ts';
 
 export async function enhanceRequest(
     req: IncomingMessage,

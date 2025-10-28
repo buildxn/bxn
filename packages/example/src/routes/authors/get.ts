@@ -1,5 +1,5 @@
 import { json, type RequestHandler, type Ok } from 'wapix';
-import { db, type Author } from '../../db.js';
+import { db, type Author } from '../../db.ts';
 
 type Params = Record<string, never>;
 

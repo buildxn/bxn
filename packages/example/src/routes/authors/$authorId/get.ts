@@ -1,5 +1,5 @@
 import { json, badRequest, notFound, type RequestHandler, type Ok, type BadRequest, type NotFound } from 'wapix';
-import { db, type Author } from '../../../db.js';
+import { db, type Author } from '../../../db.ts';
 
 type Params = { authorId?: string };
 

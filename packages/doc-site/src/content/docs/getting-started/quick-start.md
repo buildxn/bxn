@@ -40,10 +40,10 @@ export default handler;
 
 ## Run the Development Server
 
-Start the development server with hot reload:
+Start the development server with watch mode for auto-reload:
 
 ```bash
-npx wapix dev
+npx wapix start --watch
 ```
 
 Your API is now running at `http://localhost:3000`!

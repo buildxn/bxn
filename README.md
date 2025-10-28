@@ -62,7 +62,7 @@ export default handler;
 2. **Run the development server**:
 
 ```bash
-npx wapix dev
+npx wapix start --watch
 ```
 
 3. **That's it!** Your API is running at `http://localhost:3000`
@@ -209,19 +209,18 @@ const handler: RequestHandler<{}, Response, RequestBody> = async (req) => {
 ### CLI Commands
 
 ```bash
-# Development mode with hot reload
-wapix dev
+# Development mode with watch mode for auto-reload
+wapix start --watch
 
 # Production mode
 wapix start
 
 # Options:
 #   --port, -p <port>    Port to listen on (default: 3000)
-#   --routes <path>      Routes directory (default: ./src/routes for dev, ./lib/routes for start)
+#   --routes <path>      Routes directory (auto-detected: src/routes or lib/routes)
+#   --watch              Enable watch mode with Node.js native --watch
 #   --key <path>         Path to SSL private key file (for HTTPS)
 #   --cert <path>        Path to SSL certificate file (for HTTPS)
-#   --include, -i        Include patterns (can be specified multiple times, used with picomatch)
-#   --exclude, -e        Exclude patterns (can be specified multiple times, used with picomatch)
 ```
 
 ### HTTPS Support
@@ -229,8 +228,8 @@ wapix start
 wapix supports HTTPS by providing SSL certificate files:
 
 ```bash
-# Development with HTTPS
-wapix dev --key ./ssl/key.pem --cert ./ssl/cert.pem
+# Development with HTTPS and watch mode
+wapix start --watch --key ./ssl/key.pem --cert ./ssl/cert.pem
 
 # Production with HTTPS
 wapix start --port 443 --key ./ssl/key.pem --cert ./ssl/cert.pem
@@ -266,36 +265,32 @@ server.listen(443, () => {
 });
 ```
 
-#### Development Mode Watch Patterns
+#### Watch Mode
 
-The `dev` command uses **picomatch** for flexible file watching with smart defaults:
-
-**Default ignored patterns:**
-- `**/.*` - Hidden files and directories
-- `**/.*/**` - Contents of hidden directories
-- `**/{node_modules,bower_components,vendor}/**` - Dependencies
-- `**/dist/**` - Build output
-- `**/build/**` - Build output
-- `**/lib/**` - Compiled output
-
-**Custom patterns:**
+The `--watch` flag leverages Node.js native `--watch` for automatic server restarts:
 
 ```bash
-# Exclude additional patterns
-wapix dev --exclude "**/*.test.ts" --exclude "**/temp/**"
+# Enable watch mode for development
+wapix start --watch
 
-# Include specific patterns (negates default ignores)
-wapix dev --include "**/.config/**"
-
-# Combine both
-wapix dev --exclude "**/*.log" --include "**/src/**"
+# With custom port
+wapix start --watch --port 8080
 ```
 
-Picomatch supports powerful glob patterns:
-- `**/*.ts` - All TypeScript files recursively
-- `src/**/*.{ts,js}` - Multiple extensions in src
-- `!**/test/**` - Negate patterns
-- `{foo,bar}/**` - Match multiple directories
+**How it works:**
+- When you use `--watch`, the CLI re-spawns itself with `node --watch`
+- Node.js automatically watches all imported modules
+- Server restarts when any file changes
+- No configuration needed - works out of the box
+
+#### Routes Directory Selection
+
+The `wapix start` command selects the routes directory based on the `--watch` flag:
+- **With `--watch`**: Uses `./src/routes` (development with TypeScript source)
+- **Without `--watch`**: Uses `./lib/routes` (production with compiled JavaScript)
+- **With `--routes`**: Uses the specified path (explicit override)
+
+This creates a clear, predictable contract with no filesystem guessing.
 
 ## 🎯 Examples
 
@@ -385,23 +380,15 @@ The framework is designed to be zero-config with sensible defaults, but offers f
 
 ### CLI Options
 
-Both `wapix dev` and `wapix start` support these options:
+The `wapix start` command supports these options:
 
 | Option | Alias | Description | Default |
 |--------|-------|-------------|---------|
 | `--port` | `-p` | Port to listen on | `3000` (or `PORT` env var) |
-| `--routes` | - | Routes directory | `./src/routes` (dev)<br/>`./lib/routes` (start) |
-
-### Development Mode Options
-
-The `wapix dev` command has additional options for controlling file watching:
-
-| Option | Alias | Description | Default |
-|--------|-------|-------------|---------|
-| `--include` | `-i` | Include patterns (picomatch) | `[]` |
-| `--exclude` | `-e` | Exclude patterns (picomatch) | `[]` |
-
-These options can be specified multiple times for multiple patterns.
+| `--routes` | - | Routes directory | `./src/routes` (with `--watch`)<br/>`./lib/routes` (without `--watch`) |
+| `--watch` | - | Enable watch mode | `false` |
+| `--key` | - | SSL private key path | - |
+| `--cert` | - | SSL certificate path | - |
 
 ## 🤝 Contributing
 

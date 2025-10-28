@@ -2,10 +2,10 @@ import { Server } from 'node:http';
 import { Server as HttpsServer } from 'node:https';
 import type { ServerOptions as HttpsServerOptions } from 'node:https';
 import type { IncomingMessage, ServerResponse } from 'node:http';
-import type { RequestHandler } from './types.js';
-import { enhanceRequest } from './enhance-request.js';
-import { findMatchingRoute } from './find-matching-route.js';
-import type { HttpMethod } from './http-methods.js';
+import type { RequestHandler } from './types.ts';
+import { enhanceRequest } from './enhance-request.ts';
+import { findMatchingRoute } from './find-matching-route.ts';
+import type { HttpMethod } from './http-methods.ts';
 
 // Routes are path-first: { '/path': { get: handler, post: handler } }
 export type Routes = Record<string, Partial<Record<HttpMethod, RequestHandler>>>;

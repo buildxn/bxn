@@ -17,14 +17,9 @@
     "build": "tsc",
     "dev": "tsc --watch"
   },
-  "dependencies": {
-    "chokidar": "^4.0.3",
-    "picomatch": "^4.0.3",
-    "tsx": "^4.20.6"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/node": "^24.7.2",
-    "@types/picomatch": "^3.0.2",
     "typescript": "^5.0.0"
   }
 }

@@ -1,5 +1,5 @@
 import type { IncomingMessage } from 'node:http';
-import type { HttpResult } from './http-result.js';
+import type { HttpResult } from './http-result.ts';
 
 export interface EnhancedRequest<
   Params = {},

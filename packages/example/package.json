@@ -4,7 +4,7 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "wapix dev",
+    "dev": "wapix start --watch",
     "start": "wapix start",
     "build": "tsc"
   },

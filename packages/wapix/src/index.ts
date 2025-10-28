@@ -1,6 +1,6 @@
-export { createServer } from './create-server.js';
-export type { RequestHandler, EnhancedRequest } from './types.js';
-export type { HttpResult, Ok, Created, NotFound, BadRequest, NoContent, Stream } from './http-result.js';
+export { createServer } from './create-server.ts';
+export type { RequestHandler, EnhancedRequest } from './types.ts';
+export type { HttpResult, Ok, Created, NotFound, BadRequest, NoContent, Stream } from './http-result.ts';
 export {
   ok,
   created,
@@ -11,4 +11,4 @@ export {
   noContent,
   status,
   stream
-} from './http-result.js';
+} from './http-result.ts';

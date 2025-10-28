@@ -37,23 +37,10 @@ importers:
         version: 5.9.3
 
   packages/wapix:
-    dependencies:
-      chokidar:
-        specifier: ^4.0.3
-        version: 4.0.3
-      picomatch:
-        specifier: ^4.0.3
-        version: 4.0.3
-      tsx:
-        specifier: ^4.20.6
-        version: 4.20.6
     devDependencies:
       '@types/node':
         specifier: ^24.7.2
         version: 24.7.2
-      '@types/picomatch':
-        specifier: ^3.0.2
-        version: 3.0.2
       typescript:
         specifier: ^5.0.0
         version: 5.9.3
@@ -736,9 +723,6 @@ packages:
 
   '@types/node@24.7.2':
     resolution: {integrity: sha512-/NbVmcGTP+lj5oa4yiYxxeBjRivKQ5Ns1eSZeB99ExsEQ6rX5XYU1Zy/gGxY/ilqtD4Etx9mKyrPxZRetiahhA==}
-
-  '@types/picomatch@3.0.2':
-    resolution: {integrity: sha512-n0i8TD3UDB7paoMMxA3Y65vUncFJXjcUf7lQY7YyKGl6031FNjfsLs6pdLFCy2GNFxItPJG8GvvpbZc2skH7WA==}
 
   '@types/sax@1.2.7':
     resolution: {integrity: sha512-rO73L89PJxeYM3s3pPPjiPgVVcymqU490g0YO5n5By0k2Erzj6tay/4lr1CHAAU4JyOWd1rpQ8bCf6cZfHU96A==}
@@ -2852,8 +2836,6 @@ snapshots:
     dependencies:
       undici-types: 7.14.0
 
-  '@types/picomatch@3.0.2': {}
-
   '@types/sax@1.2.7':
     dependencies:
       '@types/node': 24.7.2
@@ -3459,6 +3441,7 @@ snapshots:
   get-tsconfig@4.12.0:
     dependencies:
       resolve-pkg-maps: 1.0.0
+    optional: true
 
   github-slugger@2.0.0: {}
 
@@ -4499,7 +4482,8 @@ snapshots:
       mdast-util-to-markdown: 2.1.2
       unified: 11.0.5
 
-  resolve-pkg-maps@1.0.0: {}
+  resolve-pkg-maps@1.0.0:
+    optional: true
 
   restructure@3.0.2: {}
 
@@ -4720,6 +4704,7 @@ snapshots:
       get-tsconfig: 4.12.0
     optionalDependencies:
       fsevents: 2.3.3
+    optional: true
 
   type-fest@4.41.0: {}
 

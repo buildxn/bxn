@@ -1,12 +1,18 @@
 import { parseArgs, type ParseArgsOptionsConfig } from 'node:util';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
-import { createServer } from '../create-server.js';
-import { buildRouteTree, collectRouteFiles, logRoutes } from './route-scanner.js';
+import { createServer } from '../create-server.ts';
+import { buildRouteTree, collectRouteFiles, logRoutes } from './route-scanner.ts';
 
 
 export async function start(args: string[]): Promise<void> {
   const options = parseStartArgs(args);
+
+  // Show watch mode indicator if running under Node's --watch
+  const isUnderNodeWatch = process.env['NODE_RUN_WATCH_MODE'] === '1';
+  if (isUnderNodeWatch) {
+    console.log('👀 Running with Node.js --watch mode');
+  }
 
   await startInternal(options);
 }
@@ -19,12 +25,12 @@ export interface StartOptions {
 }
 
 export function parseStartArgs<TMoreOptions extends {} = {}>(args: string[], defaultOptions: Partial<StartOptions> = {}, moreOptions?: ParseArgsOptionsConfig): StartOptions & TMoreOptions {
-  const { port: defaultPort = 3000, routesPath: defaultRoutesPath = './lib/routes' } = defaultOptions;
+  const { port: defaultPort = 3000 } = defaultOptions;
   const { values } = parseArgs({
     args,
     options: {
       port: { type: 'string', short: 'p', default: defaultPort?.toString() },
-      routes: { type: 'string', default: defaultRoutesPath },
+      routes: { type: 'string' },
       key: { type: 'string' },
       cert: { type: 'string' },
       ...moreOptions
@@ -33,7 +39,17 @@ export function parseStartArgs<TMoreOptions extends {} = {}>(args: string[], def
   });
 
   const port = parseInt(values.port, 10);
-  const routesPath = path.join(process.cwd(), values.routes as string);
+
+  // Determine routes directory based on watch mode
+  // --watch flag → use src/routes (development)
+  // no --watch flag → use lib/routes (production)
+  // --routes flag → explicit override
+  const hasWatch = args.includes('--watch');
+  const defaultRoutesPath = hasWatch ? './src/routes' : './lib/routes';
+  const routesPath = values.routes
+    ? path.join(process.cwd(), values.routes as string)
+    : path.join(process.cwd(), defaultRoutesPath);
+
   const key = values.key ? path.join(process.cwd(), values.key as string) : undefined;
   const cert = values.cert ? path.join(process.cwd(), values.cert as string) : undefined;
   return { ...values, port, routesPath, key, cert } as unknown as StartOptions & TMoreOptions;
