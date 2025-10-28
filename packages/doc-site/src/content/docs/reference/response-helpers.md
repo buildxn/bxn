@@ -387,5 +387,5 @@ const del: RequestHandler<Params, DeleteResponse> = (req) => {
 
 ## Next Steps
 
-- Learn about [Type Safety](/core/type-safety/) for type-safe responses
-- See [Examples](/examples/rest-api/) for complete API implementations
+- Learn about [Type Safety](../../core/type-safety/) for type-safe responses
+- See [Examples](../../examples/rest-api/) for complete API implementations

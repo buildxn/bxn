@@ -67,6 +67,6 @@ You should see:
 
 ## Next Steps
 
-- Learn about [File-System Routing](/core/file-system-routing/) to understand how routes are mapped
-- Explore [Request Handlers](/core/request-handlers/) to build more complex APIs
-- Check out the [Response Helpers](/reference/response-helpers/) reference for all available response types
+- Learn about [File-System Routing](../../core/file-system-routing/) to understand how routes are mapped
+- Explore [Request Handlers](../../core/request-handlers/) to build more complex APIs
+- Check out the [Response Helpers](../../reference/response-helpers/) reference for all available response types

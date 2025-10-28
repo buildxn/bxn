@@ -410,6 +410,6 @@ consumeSSE();
 
 ## Next Steps
 
-- Build a complete [REST API](/examples/rest-api/)
-- Learn about [Response Helpers](/reference/response-helpers/)
-- Explore [Request Handlers](/core/request-handlers/)
+- Build a complete [REST API](../../examples/rest-api/)
+- Learn about [Response Helpers](../../reference/response-helpers/)
+- Explore [Request Handlers](../../core/request-handlers/)

@@ -326,5 +326,5 @@ const updateHandler: RequestHandler<Params, UpdateResponse, UpdateBody> = (req):
 
 ## Next Steps
 
-- See all [Response Helpers](/reference/response-helpers/) available
-- Check out complete [Examples](/examples/rest-api/)
+- See all [Response Helpers](../../reference/response-helpers/) available
+- Check out complete [Examples](../../examples/rest-api/)

@@ -186,5 +186,5 @@ export default handler;
 
 ## Next Steps
 
-- Learn about [Type Safety](/core/type-safety/) for full type-safe APIs
-- Explore [Response Helpers](/reference/response-helpers/) for all available response types
+- Learn about [Type Safety](../../core/type-safety/) for full type-safe APIs
+- Explore [Response Helpers](../../reference/response-helpers/) for all available response types

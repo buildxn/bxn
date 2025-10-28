@@ -398,7 +398,7 @@ curl -X DELETE http://localhost:3000/posts/123e4567-e89b-12d3-a456-426614174000
 
 ## Next Steps
 
-- Add [Streaming](/examples/streaming/) for real-time updates
+- Add [Streaming](../../examples/streaming/) for real-time updates
 - Implement authentication and authorization
 - Add database integration (PostgreSQL, MongoDB, etc.)
 - Add request validation library (Zod, Joi, etc.)

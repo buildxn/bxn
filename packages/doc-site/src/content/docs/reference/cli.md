@@ -339,5 +339,5 @@ wapix start
 
 ## Next Steps
 
-- Read about [File-System Routing](/core/file-system-routing/) to understand route structure
-- See [Quick Start](/getting-started/quick-start/) for a complete setup guide
+- Read about [File-System Routing](../../core/file-system-routing/) to understand route structure
+- See [Quick Start](../../getting-started/quick-start/) for a complete setup guide
