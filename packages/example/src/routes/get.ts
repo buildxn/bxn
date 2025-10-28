@@ -18,7 +18,7 @@ type Response = Ok<HealthResponse>;
 // GET / - API health check
 const handler: RequestHandler<Params, Response> = (): Response => {
     return json({
-        message: 'Blog API is running..',
+        message: 'Blog API is running...',
         version: '1.0.0',
         endpoints: {
             posts: '/posts',

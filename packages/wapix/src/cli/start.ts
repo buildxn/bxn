@@ -4,12 +4,12 @@ import path from 'node:path';
 import { createServer } from '../create-server.ts';
 import { buildRouteTree, collectRouteFiles, logRoutes } from './route-scanner.ts';
 
+const isUnderNodeWatch = process.env['NODE_RUN_WATCH_MODE'] === '1';
 
 export async function start(args: string[]): Promise<void> {
   const options = parseStartArgs(args);
 
   // Show watch mode indicator if running under Node's --watch
-  const isUnderNodeWatch = process.env['NODE_RUN_WATCH_MODE'] === '1';
   if (isUnderNodeWatch) {
     console.log('👀 Running with Node.js --watch mode');
   }
@@ -44,8 +44,7 @@ export function parseStartArgs<TMoreOptions extends {} = {}>(args: string[], def
   // --watch flag → use src/routes (development)
   // no --watch flag → use lib/routes (production)
   // --routes flag → explicit override
-  const hasWatch = args.includes('--watch');
-  const defaultRoutesPath = hasWatch ? './src/routes' : './lib/routes';
+  const defaultRoutesPath = isUnderNodeWatch ? './src/routes' : './lib/routes';
   const routesPath = values.routes
     ? path.join(process.cwd(), values.routes as string)
     : path.join(process.cwd(), defaultRoutesPath);
