@@ -1,0 +1,26 @@
+{
+  "name": "@buildxn/http-cli",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./lib/index.js",
+      "types": "./lib/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "@clack/prompts": "^0.11.0",
+    "@buildxn/http": "workspace:*"
+  },
+  "devDependencies": {
+    "commander": "^14.0.2",
+    "@types/node": "^24.0.0",
+    "typescript": "^5.0.0"
+  }
+}

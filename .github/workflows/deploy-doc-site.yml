@@ -17,7 +17,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: withastro/action@v3
         with:
-           path: packages/doc-site
+           path: apps/docs
            package-manager: pnpm
 
   deploy:

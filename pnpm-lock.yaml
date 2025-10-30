@@ -8,7 +8,7 @@ importers:
 
   .: {}
 
-  packages/doc-site:
+  apps/docs:
     dependencies:
       '@astrojs/starlight':
         specifier: ^0.36.1
@@ -23,24 +23,78 @@ importers:
         specifier: ^0.4.1
         version: 0.4.1(@astrojs/starlight@0.36.1(astro@5.14.5(@types/node@24.7.2)(rollup@4.52.4)(tsx@4.20.6)(typescript@5.9.3)))(astro@5.14.5(@types/node@24.7.2)(rollup@4.52.4)(tsx@4.20.6)(typescript@5.9.3))(starlight-site-graph@0.5.0(@astrojs/starlight@0.36.1(astro@5.14.5(@types/node@24.7.2)(rollup@4.52.4)(tsx@4.20.6)(typescript@5.9.3)))(astro@5.14.5(@types/node@24.7.2)(rollup@4.52.4)(tsx@4.20.6)(typescript@5.9.3)))
 
-  packages/example:
+  examples/http-minimal:
     dependencies:
-      wapix:
+      '@buildxn/http':
         specifier: workspace:*
-        version: link:../wapix
+        version: link:../../packages/http
     devDependencies:
       '@types/node':
-        specifier: ^24.7.2
+        specifier: ^24.0.0
         version: 24.7.2
+      bxn:
+        specifier: workspace:*
+        version: link:../../packages/cli
       typescript:
-        specifier: ^5.9.3
+        specifier: ^5.0.0
         version: 5.9.3
 
-  packages/wapix:
+  packages/cli:
+    dependencies:
+      '@buildxn/http-cli':
+        specifier: workspace:*
+        version: link:../http-cli
+      commander:
+        specifier: ^14.0.2
+        version: 14.0.2
     devDependencies:
       '@types/node':
-        specifier: ^24.7.2
+        specifier: ^24.0.0
         version: 24.7.2
+      typescript:
+        specifier: ^5.0.0
+        version: 5.9.3
+
+  packages/create-bxn:
+    dependencies:
+      '@clack/prompts':
+        specifier: ^0.11.0
+        version: 0.11.0
+      commander:
+        specifier: ^14.0.2
+        version: 14.0.2
+    devDependencies:
+      '@types/node':
+        specifier: ^24.0.0
+        version: 24.7.2
+      typescript:
+        specifier: ^5.0.0
+        version: 5.9.3
+
+  packages/http:
+    devDependencies:
+      '@types/node':
+        specifier: ^24.0.0
+        version: 24.7.2
+      typescript:
+        specifier: ^5.0.0
+        version: 5.9.3
+
+  packages/http-cli:
+    dependencies:
+      '@buildxn/http':
+        specifier: workspace:*
+        version: link:../http
+      '@clack/prompts':
+        specifier: ^0.11.0
+        version: 0.11.0
+    devDependencies:
+      '@types/node':
+        specifier: ^24.0.0
+        version: 24.7.2
+      commander:
+        specifier: ^14.0.2
+        version: 14.0.2
       typescript:
         specifier: ^5.0.0
         version: 5.9.3
@@ -102,6 +156,12 @@ packages:
   '@capsizecss/unpack@3.0.0':
     resolution: {integrity: sha512-+ntATQe1AlL7nTOYjwjj6w3299CgRot48wL761TUGYpYgAou3AaONZazp0PKZyCyWhudWsjhq1nvRHOvbMzhTA==}
     engines: {node: '>=18'}
+
+  '@clack/core@0.5.0':
+    resolution: {integrity: sha512-p3y0FIOwaYRUPRcMO7+dlmLh8PSRcrjuTndsiA0WAFbWES0mLZlrjVoBRZ9DzkPFJZG6KGkJmoEAY0ZcVWTkow==}
+
+  '@clack/prompts@0.11.0':
+    resolution: {integrity: sha512-pMN5FcrEw9hUkZA4f+zLlzivQSeQf5dRGJjSUbvVYDLvpKCdQx5OaknvKzgbtXOizhP+SJJJjqEbOe55uKKfAw==}
 
   '@ctrl/tinycolor@4.2.0':
     resolution: {integrity: sha512-kzyuwOAQnXJNLS9PSyrk0CWk35nWJW/zl/6KvnTBMFK65gm7U1/Z5BqjxeapjZCIhQcM/DsrEmcbRwDyXyXK4A==}
@@ -888,6 +948,10 @@ packages:
 
   comma-separated-tokens@2.0.3:
     resolution: {integrity: sha512-Fu4hJdvzeylCfQPp9SGWidpzrMs7tTrlu6Vb8XGaRGck8QSNZJJp538Wrb60Lax4fPwR64ViY468OIUTbRlGZg==}
+
+  commander@14.0.2:
+    resolution: {integrity: sha512-TywoWNNRbhoD0BXs1P3ZEScW8W5iKrnbithIl0YH+uCmBd0QpPOA8yc82DS3BIE5Ma6FnBVUsJ7wVUDz4dvOWQ==}
+    engines: {node: '>=20'}
 
   commander@7.2.0:
     resolution: {integrity: sha512-QrWXB+ZQSVPmIWIhtEO9H+gwHaMGYiF5ChvoJ+K9ZGHG/sVsa6yiesAD1GC/x46sET00Xlwo1u49RVVVzvcSkw==}
@@ -1837,6 +1901,7 @@ packages:
   sitemap@8.0.0:
     resolution: {integrity: sha512-+AbdxhM9kJsHtruUF39bwS/B0Fytw6Fr1o4ZAIAEqA6cke2xcoO2GleBw9Zw7nRzILVEgz7zBM5GiTJjie1G9A==}
     engines: {node: '>=14.0.0', npm: '>=6.0.0'}
+    deprecated: 'SECURITY: Multiple vulnerabilities fixed in 8.0.1 (XML injection, path traversal, command injection, protocol injection). Upgrade immediately: npm install sitemap@8.0.1'
     hasBin: true
 
   smol-toml@1.4.2:
@@ -2313,6 +2378,17 @@ snapshots:
   '@capsizecss/unpack@3.0.0':
     dependencies:
       fontkit: 2.0.4
+
+  '@clack/core@0.5.0':
+    dependencies:
+      picocolors: 1.1.1
+      sisteransi: 1.0.5
+
+  '@clack/prompts@0.11.0':
+    dependencies:
+      '@clack/core': 0.5.0
+      picocolors: 1.1.1
+      sisteransi: 1.0.5
 
   '@ctrl/tinycolor@4.2.0': {}
 
@@ -3065,6 +3141,8 @@ snapshots:
   collapse-white-space@2.1.0: {}
 
   comma-separated-tokens@2.0.3: {}
+
+  commander@14.0.2: {}
 
   commander@7.2.0: {}
 

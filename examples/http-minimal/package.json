@@ -1,0 +1,20 @@
+{
+  "name": "@buildxn/http-minimal-example",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "bxn http start --watch",
+    "start": "bxn http start",
+    "build": "tsc"
+  },
+  "exports": null,
+  "dependencies": {
+    "@buildxn/http": "workspace:*"
+  },
+  "devDependencies": {
+    "bxn": "workspace:*",
+    "@types/node": "^24.0.0",
+    "typescript": "^5.0.0"
+  }
+}

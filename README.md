@@ -1,11 +1,11 @@
 <div align="center">
 
-# ⚡ wapix
+# ⚡ bxn http
 
 **A zero-config, file-system-driven HTTP framework for Node.js — type-safe, fast, and minimal.**
 
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-blue.svg)](https://www.typescriptlang.org/)
-[![Node.js](https://img.shields.io/badge/Node.js-18+-green.svg)](https://nodejs.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-25+-green.svg)](https://nodejs.org/)
 [![pnpm](https://img.shields.io/badge/pnpm-10.18.3-orange.svg)](https://pnpm.io/)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
@@ -35,11 +35,11 @@
 ### Installation
 
 ```bash
-npm install wapix
+npm install @buildxn/http
 # or
-pnpm add wapix
+pnpm add @buildxn/http
 # or
-yarn add wapix
+yarn add @buildxn/http
 ```
 
 ### Create Your First API
@@ -47,7 +47,7 @@ yarn add wapix
 1. **Create a route file** - `src/routes/get.ts`:
 
 ```typescript
-import { json, type RequestHandler } from 'wapix';
+import { json, type RequestHandler } from '@buildxn/http';
 
 const handler: RequestHandler = () => {
   return json({
@@ -62,7 +62,7 @@ export default handler;
 2. **Run the development server**:
 
 ```bash
-npx wapix start --watch
+npx bxn http start --watch
 ```
 
 3. **That's it!** Your API is running at `http://localhost:3000`
@@ -98,7 +98,7 @@ src/routes/
 All route files export a default handler function:
 
 ```typescript
-import type { RequestHandler } from 'wapix';
+import type { RequestHandler } from '@buildxn/http';
 
 // Basic handler
 const handler: RequestHandler = (req) => {
@@ -113,7 +113,7 @@ export default handler;
 Get full type safety for path params, query strings, request bodies, **and responses**:
 
 ```typescript
-import { json, notFound, type RequestHandler, type Ok, type NotFound } from 'wapix';
+import { json, notFound, type RequestHandler, type Ok, type NotFound } from '@buildxn/http';
 
 type Params = { authorId: string };
 type Query = { include?: string };
@@ -169,7 +169,7 @@ import {
   type NotFound,
   type BadRequest,
   type NoContent
-} from 'wapix';
+} from '@buildxn/http';
 
 // JSON response with inferred type
 return json({ users: [...] });  // HttpResult<{ users: User[] }>
@@ -210,10 +210,10 @@ const handler: RequestHandler<{}, Response, RequestBody> = async (req) => {
 
 ```bash
 # Development mode with watch mode for auto-reload
-wapix start --watch
+bxn http start --watch
 
 # Production mode
-wapix start
+bxn http start
 
 # Options:
 #   --port, -p <port>    Port to listen on (default: 3000)
@@ -225,14 +225,14 @@ wapix start
 
 ### HTTPS Support
 
-wapix supports HTTPS by providing SSL certificate files:
+bxn http supports HTTPS by providing SSL certificate files:
 
 ```bash
 # Development with HTTPS and watch mode
-wapix start --watch --key ./ssl/key.pem --cert ./ssl/cert.pem
+bxn http start --watch --key ./ssl/key.pem --cert ./ssl/cert.pem
 
 # Production with HTTPS
-wapix start --port 443 --key ./ssl/key.pem --cert ./ssl/cert.pem
+bxn http start --port 443 --key ./ssl/key.pem --cert ./ssl/cert.pem
 ```
 
 **Generating self-signed certificates for development:**
@@ -245,7 +245,7 @@ openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -node
 **Using HTTPS programmatically:**
 
 ```typescript
-import { createServer } from 'wapix';
+import { createServer } from '@buildxn/http';
 import { readFileSync } from 'fs';
 
 const server = createServer(
@@ -271,10 +271,10 @@ The `--watch` flag leverages Node.js native `--watch` for automatic server resta
 
 ```bash
 # Enable watch mode for development
-wapix start --watch
+bxn http start --watch
 
 # With custom port
-wapix start --watch --port 8080
+bxn http start --watch --port 8080
 ```
 
 **How it works:**
@@ -285,7 +285,7 @@ wapix start --watch --port 8080
 
 #### Routes Directory Selection
 
-The `wapix start` command selects the routes directory based on the `--watch` flag:
+The `bxn http start` command selects the routes directory based on the `--watch` flag:
 - **With `--watch`**: Uses `./src/routes` (development with TypeScript source)
 - **Without `--watch`**: Uses `./lib/routes` (production with compiled JavaScript)
 - **With `--routes`**: Uses the specified path (explicit override)
@@ -298,7 +298,7 @@ This creates a clear, predictable contract with no filesystem guessing.
 
 ```typescript
 // src/routes/posts/get.ts
-import { json, type RequestHandler } from 'wapix';
+import { json, type RequestHandler } from '@buildxn/http';
 
 const handler: RequestHandler = () => {
   const posts = db.posts.getAll();
@@ -310,7 +310,7 @@ export default handler;
 
 ```typescript
 // src/routes/posts/post.ts
-import { created, badRequest, type RequestHandler, type Created, type BadRequest } from 'wapix';
+import { created, badRequest, type RequestHandler, type Created, type BadRequest } from '@buildxn/http';
 
 type Body = { title: string; content: string };
 
@@ -338,7 +338,7 @@ export default handler;
 
 ```typescript
 // src/routes/posts/$postId/get.ts
-import { json, notFound, type RequestHandler } from 'wapix';
+import { json, notFound, type RequestHandler } from '@buildxn/http';
 
 type Params = { postId: string };
 
@@ -359,7 +359,7 @@ export default handler;
 
 ```typescript
 // src/routes/stream/get.ts
-import { stream, type RequestHandler } from 'wapix';
+import { stream, type RequestHandler } from '@buildxn/http';
 import { Readable } from 'node:stream';
 
 const handler: RequestHandler = () => {
@@ -380,7 +380,7 @@ The framework is designed to be zero-config with sensible defaults, but offers f
 
 ### CLI Options
 
-The `wapix start` command supports these options:
+The `bxn http start` command supports these options:
 
 | Option | Alias | Description | Default |
 |--------|-------|-------------|---------|
@@ -404,18 +404,17 @@ We welcome contributions! Here's how you can help:
 
 ```bash
 # Clone the repo
-git clone https://github.com/yourusername/http.git
+git clone https://github.com/buildxn/http.git
 cd http
 
 # Install dependencies
 pnpm install
 
-# Build the framework
-cd packages/http
+# Build all packages
 pnpm build
 
 # Run the example
-cd ../example
+cd examples/http-minimal
 pnpm dev
 ```
 

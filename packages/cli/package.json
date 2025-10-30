@@ -1,0 +1,20 @@
+{
+  "name": "bxn",
+  "version": "0.0.1",
+  "type": "module",
+  "bin": {
+    "bxn": "./lib/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "commander": "^14.0.2",
+    "@buildxn/http-cli": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "^5.0.0"
+  }
+}
