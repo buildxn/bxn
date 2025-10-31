@@ -5,7 +5,7 @@ import starlight from '@astrojs/starlight';
 // https://astro.build/config
 export default defineConfig({
     site: 'https://buildxn.github.io',
-    base: '/docs',
+    base: '/bxn',
     integrations: [
         starlight({
             title: 'bxn http',
