@@ -6,6 +6,7 @@ import { existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { copyTemplate } from './copy-templates.ts';
 import { getLatestVersion } from './get-latest-version.ts';
+import { detectPackageManager } from './detect-package-manager.ts';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -39,20 +40,9 @@ async function main() {
     process.exit(1);
   }
 
-  // Ask about package manager
-  const packageManager = await p.select({
-    message: 'Which package manager do you want to use?',
-    options: [
-      { value: 'pnpm', label: 'pnpm', hint: 'recommended' },
-      { value: 'npm', label: 'npm' },
-      { value: 'yarn', label: 'yarn' },
-    ],
-  });
-
-  if (p.isCancel(packageManager)) {
-    p.cancel('Operation cancelled');
-    process.exit(0);
-  }
+  // Detect package manager from usage
+  const packageManager = detectPackageManager();
+  p.log.info(`Using ${packageManager} as package manager`);
 
   const s = p.spinner();
   s.start('Creating project');
