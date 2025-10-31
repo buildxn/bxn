@@ -4,7 +4,7 @@ import { join, dirname } from 'node:path';
 import { spawn } from 'node:child_process';
 import { existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { copyTemplate } from './copy-templates';
+import { copyTemplate } from './copy-templates.ts';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
