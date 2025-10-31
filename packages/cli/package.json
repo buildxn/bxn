@@ -12,7 +12,7 @@
     "build": "tsup",
     "dev": "tsup --watch"
   },
-  "dependencies": {},
+  "dependencies": { },
   "devDependencies": {
     "@buildxn/http-cli": "workspace:^",
     "@types/node": "^24.0.0",

@@ -3,5 +3,7 @@
   "changelog": ["@changesets/changelog-github", { "repo": "buildxn/bxn" }],
   "commit": false,
   "baseBranch": "main",
-  "updateInternalDependencies": "patch"
+  "access": "public",
+  "updateInternalDependencies": "patch",
+  "privatePackages": false
 }
