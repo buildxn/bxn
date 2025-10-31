@@ -2,19 +2,22 @@
   "name": "bxn",
   "version": "0.0.1",
   "type": "module",
+  "files": [
+    "dist"
+  ],
   "bin": {
-    "bxn": "./lib/cli.js"
+    "bxn": "./dist/cli.js"
   },
   "scripts": {
-    "build": "tsc",
-    "dev": "tsc --watch"
+    "build": "tsup",
+    "dev": "tsup --watch"
   },
-  "dependencies": {
-    "commander": "^14.0.2",
-    "@buildxn/http-cli": "workspace:*"
-  },
+  "dependencies": {},
   "devDependencies": {
+    "@buildxn/http-cli": "workspace:*",
     "@types/node": "^24.0.0",
+    "commander": "^14.0.2",
+    "tsup": "^8.5.0",
     "typescript": "^5.0.0"
   }
 }
