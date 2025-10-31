@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 import { registerHttpCommands } from "@buildxn/http-cli";
-import { Command } from "commander";
+import { cac } from "cac";
 import { getVersion } from "./get-version.ts";
 
-const program = new Command().name("bxn").version(getVersion());
+const cli = cac("bxn").version(getVersion()).help();
 
-registerHttpCommands(program.command("http"))
+registerHttpCommands(cli);
 
-program.parseAsync(process.argv);
+cli.parse();

@@ -54,6 +54,9 @@ importers:
       '@types/node':
         specifier: ^24.0.0
         version: 24.7.2
+      cac:
+        specifier: ^6.7.14
+        version: 6.7.14
       commander:
         specifier: ^14.0.2
         version: 14.0.2
@@ -101,6 +104,9 @@ importers:
       '@types/node':
         specifier: ^24.0.0
         version: 24.7.2
+      cac:
+        specifier: ^6.7.14
+        version: 6.7.14
       commander:
         specifier: ^14.0.2
         version: 14.0.2

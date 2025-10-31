@@ -1,13 +1,12 @@
-import type { Command } from 'commander'
+import type { CAC } from 'cac'
 import type { StartOptions } from './start';
 import { spawn } from 'node:child_process';
 
-export function registerHttpCommands(command: Command) {
-    command.description("Web framework commands")
-        .command("start")
-        .description("start server")
-        .option("-p, --port <number>", "Port to run the server on", "3000")
-        .option("--watch", "Enable watch mode", false)
+export function registerHttpCommands(cli: CAC) {
+    cli
+        .command("http start", "start server")
+        .option("-p, --port <number>", "Port to run the server on", { default: "3000" })
+        .option("--watch", "Enable watch mode")
         .option('--routes <path>', 'Path to the routes directory')
         .option("--ssl-key <path>", "Path to the SSL key file")
         .option("--ssl-cert <path>", "Path to the SSL certificate file")
@@ -31,5 +30,5 @@ export function registerHttpCommands(command: Command) {
                     watch
                 });
             }
-        })
+        });
 }

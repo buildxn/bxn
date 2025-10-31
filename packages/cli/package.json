@@ -12,10 +12,10 @@
     "build": "tsup",
     "dev": "tsup --watch"
   },
-  "dependencies": { },
   "devDependencies": {
     "@buildxn/http-cli": "workspace:^",
     "@types/node": "^24.0.0",
+    "cac": "^6.7.14",
     "commander": "^14.0.2",
     "tsup": "^8.5.0",
     "typescript": "^5.0.0"
