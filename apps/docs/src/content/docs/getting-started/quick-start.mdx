@@ -3,64 +3,110 @@ title: Quick Start
 description: Get started with bxn http in minutes
 ---
 
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
 Get up and running with bxn http in just a few minutes.
 
 ## Create a New Project
 
 The fastest way to get started is using the `create-bxn` init command:
 
-```bash
-npm create bxn@latest
-```
+<Tabs syncKey="pkg">
+<TabItem label="pnpm">
 
 ```bash
 pnpm create bxn@latest
 ```
 
+</TabItem>
+<TabItem label="npm">
+
+```bash
+npm create bxn@latest
+```
+
+</TabItem>
+<TabItem label="yarn">
+
 ```bash
 yarn create bxn@latest
 ```
 
-This interactive CLI will:
-- Prompt you for a project name
-- Ask which package manager you prefer (pnpm, npm, or yarn)
-- Create a new project directory with the recommended structure
-- Generate a `src/routes/get.ts` file with a basic "Hello World" route handler
-- Configure `package.json` with useful scripts (`dev`, `build`, `start`)
-- Optionally install dependencies
+</TabItem>
+</Tabs>
 
-Once created, navigate to your project and start the development server:
+Once created, start the development server:
+
+<Tabs syncKey="pkg">
+<TabItem label="pnpm">
+
+```bash
+cd your-project-name
+pnpm dev
+```
+
+</TabItem>
+<TabItem label="npm">
 
 ```bash
 cd your-project-name
 npm run dev
 ```
 
-Your API will be running at `http://localhost:3000`. Visit it in your browser or use curl to test:
+</TabItem>
+<TabItem label="yarn">
 
 ```bash
-curl http://localhost:3000
+cd your-project-name
+yarn dev
 ```
 
-You should see a JSON response from the generated route file!
+</TabItem>
+</Tabs>
+
+Visit `http://localhost:3000` in your browser to see your API running!
 
 ## Manual Installation
 
 If you prefer to set up manually, install both the framework and CLI:
 
-```bash
-npm install @buildxn/http
-npm install -D bxn
-```
+<Tabs syncKey="pkg">
+<TabItem label="pnpm">
 
 ```bash
 pnpm add @buildxn/http
 pnpm add -D bxn
 ```
 
+</TabItem>
+<TabItem label="npm">
+
+```bash
+npm install @buildxn/http
+npm install -D bxn
+```
+
+</TabItem>
+<TabItem label="yarn">
+
 ```bash
 yarn add @buildxn/http
 yarn add -D bxn
+```
+
+</TabItem>
+</Tabs>
+
+Then add these scripts to your `package.json`:
+
+```json
+{
+  "scripts": {
+    "dev": "bxn http start --watch",
+    "start": "bxn http start",
+    "build": "tsc"
+  }
+}
 ```
 
 ## Create Your First Route
