@@ -5,20 +5,62 @@ description: Get started with bxn http in minutes
 
 Get up and running with bxn http in just a few minutes.
 
-## Installation
+## Create a New Project
 
-Install bxn http using your preferred package manager:
+The fastest way to get started is using the `create-bxn` init command:
 
 ```bash
-npm install bxn http
+npm create bxn@latest
 ```
 
 ```bash
-pnpm add bxn http
+pnpm create bxn@latest
 ```
 
 ```bash
-yarn add bxn http
+yarn create bxn@latest
+```
+
+This interactive CLI will:
+- Prompt you for a project name
+- Ask which package manager you prefer (pnpm, npm, or yarn)
+- Create a new project directory with the recommended structure
+- Generate a `src/routes/get.ts` file with a basic "Hello World" route handler
+- Configure `package.json` with useful scripts (`dev`, `build`, `start`)
+- Optionally install dependencies
+
+Once created, navigate to your project and start the development server:
+
+```bash
+cd your-project-name
+npm run dev
+```
+
+Your API will be running at `http://localhost:3000`. Visit it in your browser or use curl to test:
+
+```bash
+curl http://localhost:3000
+```
+
+You should see a JSON response from the generated route file!
+
+## Manual Installation
+
+If you prefer to set up manually, install both the framework and CLI:
+
+```bash
+npm install @buildxn/http
+npm install -D bxn
+```
+
+```bash
+pnpm add @buildxn/http
+pnpm add -D bxn
+```
+
+```bash
+yarn add @buildxn/http
+yarn add -D bxn
 ```
 
 ## Create Your First Route
