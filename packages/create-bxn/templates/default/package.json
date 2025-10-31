@@ -9,10 +9,10 @@
     "build": "tsc"
   },
   "dependencies": {
-    "@buildxn/http": "^0.0.1"
+    "@buildxn/http": "{{HTTP_VERSION}}"
   },
   "devDependencies": {
-    "bxn": "^0.0.1",
+    "bxn": "{{BXN_VERSION}}",
     "@types/node": "^24.0.0",
     "typescript": "^5.0.0"
   }

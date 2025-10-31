@@ -5,6 +5,7 @@ import { spawn } from 'node:child_process';
 import { existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { copyTemplate } from './copy-templates.ts';
+import { getLatestVersion } from './get-latest-version.ts';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -57,13 +58,23 @@ async function main() {
   s.start('Creating project');
 
   try {
+    // Fetch latest versions
+    s.message('Fetching latest package versions...');
+    const [httpVersion, bxnVersion] = await Promise.all([
+      getLatestVersion('@buildxn/http'),
+      getLatestVersion('bxn'),
+    ]);
+
     // Copy template files
     const templatePath = join(__dirname, '..', 'templates', 'default');
     const replacements = {
       '{{PROJECT_NAME}}': projectName,
       '{{RUN_CMD}}': packageManager === 'npm' ? 'npm run' : packageManager as string,
+      '{{HTTP_VERSION}}': httpVersion,
+      '{{BXN_VERSION}}': bxnVersion,
     };
 
+    s.message('Copying template files...');
     await copyTemplate(templatePath, projectPath, replacements);
 
     s.stop('Project created');
