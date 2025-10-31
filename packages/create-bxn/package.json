@@ -2,8 +2,12 @@
   "name": "create-bxn",
   "version": "0.0.2",
   "type": "module",
+  "files": [
+    "dist",
+    "templates"
+  ],
   "bin": {
-    "create-bxn": "./lib/index.js"
+    "create-bxn": "./dist/index.js"
   },
   "scripts": {
     "build": "tsc",
