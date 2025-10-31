@@ -1,5 +1,13 @@
 # create-bxn
 
+## 0.0.6
+
+### Patch Changes
+
+- [`9f1788a`](https://github.com/buildxn/bxn/commit/9f1788aedec8fc2f750c61c61212d11e77460170) - feat: automatically detect package manager from usage instead of prompting
+
+- [`ada3371`](https://github.com/buildxn/bxn/commit/ada3371967a4fadca8aa2e49d558345570fff6a5) - Implement dynamic version fetching for create-bxn templates
+
 ## 0.0.5
 
 ### Patch Changes

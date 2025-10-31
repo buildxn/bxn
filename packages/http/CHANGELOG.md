@@ -1,5 +1,11 @@
 # @buildxn/http
 
+## 0.0.4
+
+### Patch Changes
+
+- [`b00b317`](https://github.com/buildxn/bxn/commit/b00b31792ce7f217bc60207eab7c14d3d072314a) - Move from commander to cac
+
 ## 0.0.3
 
 ### Patch Changes
