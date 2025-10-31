@@ -1,5 +1,11 @@
 # create-bxn
 
+## 0.0.3
+
+### Patch Changes
+
+- [`d6d4ee0`](https://github.com/buildxn/bxn/commit/d6d4ee0a6102136b44ab28e4c0156100c5c449fa) - Add output files
+
 ## 0.0.2
 
 ### Patch Changes
