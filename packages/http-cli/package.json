@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@clack/prompts": "^0.11.0",
-    "@buildxn/http": "workspace:*"
+    "@buildxn/http": "workspace:^"
   },
   "devDependencies": {
     "commander": "^14.0.2",

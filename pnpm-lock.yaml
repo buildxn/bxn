@@ -33,14 +33,14 @@ importers:
   examples/http-minimal:
     dependencies:
       '@buildxn/http':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../../packages/http
     devDependencies:
       '@types/node':
         specifier: ^24.0.0
         version: 24.7.2
       bxn:
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../../packages/cli
       typescript:
         specifier: ^5.0.0
@@ -49,7 +49,7 @@ importers:
   packages/cli:
     devDependencies:
       '@buildxn/http-cli':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../http-cli
       '@types/node':
         specifier: ^24.0.0
@@ -92,7 +92,7 @@ importers:
   packages/http-cli:
     dependencies:
       '@buildxn/http':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../http
       '@clack/prompts':
         specifier: ^0.11.0

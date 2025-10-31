@@ -9,10 +9,10 @@
   },
   "exports": null,
   "dependencies": {
-    "@buildxn/http": "workspace:*"
+    "@buildxn/http": "workspace:^"
   },
   "devDependencies": {
-    "bxn": "workspace:*",
+    "bxn": "workspace:^",
     "@types/node": "^24.0.0",
     "typescript": "^5.0.0"
   }
