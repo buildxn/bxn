@@ -1,5 +1,11 @@
 # create-bxn
 
+## 0.0.5
+
+### Patch Changes
+
+- [`9b1bc4a`](https://github.com/buildxn/bxn/commit/9b1bc4ab6c7b5860f917a93676d108f908463256) - fix: create folder
+
 ## 0.0.4
 
 ### Patch Changes
