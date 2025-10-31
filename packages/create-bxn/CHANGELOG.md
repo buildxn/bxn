@@ -1,5 +1,11 @@
 # create-bxn
 
+## 0.0.4
+
+### Patch Changes
+
+- [`85ea8ca`](https://github.com/buildxn/bxn/commit/85ea8caf77382c92228d91950d9410439345fbb0) - Add .ts extension to local import in create-bxn
+
 ## 0.0.3
 
 ### Patch Changes
