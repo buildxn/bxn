@@ -6,6 +6,9 @@ export async function copyTemplate(
   targetPath: string,
   replacements: Record<string, string>
 ): Promise<void> {
+  // Create the target directory if it doesn't exist
+  await mkdir(targetPath, { recursive: true });
+
   const entries = await readdir(templatePath, { withFileTypes: true });
 
   for (const entry of entries) {
