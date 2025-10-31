@@ -1,8 +1,7 @@
 {
   "name": "@buildxn/http-minimal-example",
-  "version": "1.0.0",
-  "type": "module",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "bxn http start --watch",
     "start": "bxn http start",
